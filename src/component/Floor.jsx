@@ -1,17 +1,19 @@
 import React from 'react'
-import { useBox } from 'use-cannon'
-export default function Floor(props) {
+import { useLoader } from '@react-three/fiber'
+import { GLTFLoader } from 'three/examples/jsm/loaders/GLTFLoader'
 
-    console.log(props);
-    const [ref,api] = useBox(()=>({
-        args:[5,0.5,5],
-        ...props
+export default function FLoor(props) {
 
-    }))
+    console.log(props)
+    const floor = useLoader(
+        GLTFLoader,
+        props.path
+    )
+    // console.log(model)
     return (
-        <mesh ref={ref} {...props} receiveShadow>
-        <boxBufferGeometry args={[10, 0.5, 10]} />
-        <meshPhysicalMaterial ></meshPhysicalMaterial>
-      </mesh>
+        
+        <primitive object={floor.scene}  {...props}></primitive>
+        
+        
     )
 }

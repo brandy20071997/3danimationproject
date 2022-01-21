@@ -5,7 +5,7 @@ import { Canvas, useFrame, extend, useThree, useLoader } from "react-three-fiber
 
 
 export default function Background(props) {
-    const texture = useLoader(THREE.TextureLoader,"/mountain.jpg");
+    const texture = useLoader(THREE.TextureLoader,"/wall-grid.png");
     const {gl} = useThree()
     
 const formated = useMemo(()=>

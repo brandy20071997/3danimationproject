@@ -9,7 +9,7 @@ import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import { Points } from 'three';
 import { BoxBufferGeometry } from 'three';
 import Bulb from './component/Bulb';
-import Background from './component/Background';
+// import Background from './component/Background';
 import Floor from './component/Floor';
 import { useBox } from 'use-cannon';
 
@@ -28,7 +28,7 @@ extend({ OrbitControls })
 const Orbit = () => {
   const { camera, gl } = useThree();
   return (
-    <orbitControls attach="orbitControls" args={[camera, gl.domElement]} />
+    <orbitControls  attach="orbitControls" args={[camera, gl.domElement]} />
   )
 
 }
@@ -129,45 +129,62 @@ window.activeMesh = e.object
 
 
   return (
-    <div style={{width:"100vh",height:"100vh"}}>
-<div style={{position:"absolute",zIndex:1}}>
+    <div style={{width:"auto",height:"100vh"}}>
+{/* <div style={{position:"absolute",zIndex:1}}>
 <div style={{background:"blue",height:50,width:50}}></div>
 <div style={{background:"yellow",height:50,width:50}}></div>
 <div style={{background:"blue",height:50,width:50}}></div>
-</div>
+</div> */}
       
-      <Canvas camera={{ position: [3,3,3] }} style={{ background: "black", width: "100vh", height: "100vh" }}>
+      <Canvas camera={{ fov:20, position: [0, -5, 100] }} style={{ background: "black", width: "auto", height: "100vh" }}>
         {/* <shadowMap></shadowMap> */}
         <Physics>
-        <Dragable>
+        {/* <Dragable> */}
         {/* <Suspense fallback={null}>
         <Box position={[2, 2, 0]} />
         </Suspense> */}
         {/* <Suspense fallback={null}>
         <Box position={[-2, 1, 0]} />
         </Suspense> */}
-        </Dragable>
+        {/* </Dragable> */}
         <Suspense fallback={null}>
-        <Background />
+        {/* <Background /> */}
         </Suspense>
         <Dragable transformGroup>
         <Suspense fallback={null}>
         {/* <ambientLight></ambientLight> */}
         <Model 
-        scale={new Array(3).fill(0.5)} 
+        scale={new Array(3).fill(4)} 
         path="/logo.gltf"
-        position={[0,-1.7,0]}
+        position={[0,-20,0]}
         />
+         {/* <Floor
+        scale={new Array(3).fill(1)} 
+        path="/terrain.gltf"
+        position={[-5,-5.5,0]}
+        /> */}
         </Suspense>
         </Dragable>
+
+        {/* <Dragable transformGroup> */}
+        <Suspense fallback={null}>
+        {/* <ambientLight></ambientLight> */}
+        
+         <Floor
+        scale={new Array(3).fill(0.7)} 
+        path="/terrain.gltf"
+        position={[115,-20,-200]}
+        />
+        </Suspense>
+        {/* </Dragable> */}
        
-        <Floor position={[0, -0.3, 0]} />
+        {/* <Floor position={[0, -0.3, 0]} /> */}
         </Physics>
         <Orbit />
-        <Bulb position={[0, 5, 0]} />
+        {/* <Bulb position={[0, 5, 0]} /> */}
         {/* <fog attach='fog' args={['white', 1, 20]}></fog> */}
         <ambientLight intensity={0.4} />
-        <axesHelper args={[2]} />
+        {/* <axesHelper args={[2]} /> */}
       </Canvas>
 
     </div>
